@@ -2,9 +2,14 @@ GUI calculator created in Python with PyQt5
 
 from Introduction to GUIs in Python with PyQt5 by Clear Code - https://youtu.be/8jrEVihl-E4 (rewatch starting at 18:28 to better understand calculator logic)
 
+Changes made:
+- Added decimal point button
+- Disabled user from typing in field
+
 Improvements to make:
 - crashes if you press enter when the field is empty or an operator is at the end
-- crashes if you enter something other than a number
 - does not keep form when you resize it
-- if you enter the numbers and operators with the keyboard into the field then hit enter it crashes
 - make it so that you can just use the numpad
+- make it so that hitting enter triggers the equal button
+- add history
+- add more features such as exponents, square roots, change sign buttons, etc.
