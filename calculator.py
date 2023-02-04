@@ -1,4 +1,5 @@
 import PyQt5.QtWidgets as qtw
+from PyQt5.QtCore import Qt
 
 # Attach widgets to window here
 class MainWindow(qtw.QWidget):
@@ -85,6 +86,40 @@ class MainWindow(qtw.QWidget):
 		self.result_field.clear()
 		self.temp_nums = []
 		self.fin_nums = []
+
+	def keyPressEvent(self, event):
+		if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
+			self.func_result()
+		if event.key() == Qt.Key_9:
+			self.num_press('9')
+		if event.key() == Qt.Key_8:
+			self.num_press('8')
+		if event.key() == Qt.Key_7:
+			self.num_press('7')
+		if event.key() == Qt.Key_6:
+			self.num_press('6')
+		if event.key() == Qt.Key_5:
+			self.num_press('5')
+		if event.key() == Qt.Key_4:
+			self.num_press('4')
+		if event.key() == Qt.Key_3:
+			self.num_press('3')
+		if event.key() == Qt.Key_2:
+			self.num_press('2')
+		if event.key() == Qt.Key_1:
+			self.num_press('1')
+		if event.key() == Qt.Key_0:
+			self.num_press('0')
+		if event.key() == Qt.Key_Period:
+			self.num_press('.')
+		if event.key() == Qt.Key_Plus:
+			self.func_press('+')
+		if event.key() == Qt.Key_Minus:
+			self.func_press('-')
+		if event.key() == Qt.Key_Asterisk:
+			self.func_press('*')
+		if event.key() == Qt.Key_Slash:
+			self.func_press('/')
 
 app = qtw.QApplication([])
 mw = MainWindow()

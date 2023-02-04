@@ -5,11 +5,10 @@ from Introduction to GUIs in Python with PyQt5 by Clear Code - https://youtu.be/
 Changes made:
 - Added decimal point button
 - Disabled user from typing in field
+- added keyPressEvent function so keyboard can be used
 
 Improvements to make:
 - crashes if you press enter when the field is empty or an operator is at the end
 - does not keep form when you resize it
-- make it so that you can just use the numpad
-- make it so that hitting enter triggers the equal button
 - add history
 - add more features such as exponents, square roots, change sign buttons, etc.
