@@ -6,6 +6,9 @@ class MainWindow(qtw.QWidget):
 	def __init__(self):
 		super().__init__()
 		self.setWindowTitle("Usagi's Calculator")
+		# self.screen_width = 300
+		# self.screen_height = 350
+		# self.setFixedSize(creen_width,screen_height)
 		self.setLayout(qtw.QVBoxLayout())
 		self.keypad()
 		self.temp_nums = []
@@ -63,6 +66,10 @@ class MainWindow(qtw.QWidget):
 	def keyPressEvent(self, event):
 		if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
 			self.func_result()
+		# if event.key() == Qt.Key_Backspace:
+		# 	self.result_field.backspace()
+		if event.key() == Qt.Key_Delete:
+			self.clear_calc()
 		if event.key() == Qt.Key_9:
 			self.num_press('9')
 		if event.key() == Qt.Key_8:

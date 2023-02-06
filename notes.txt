@@ -5,7 +5,8 @@ from Introduction to GUIs in Python with PyQt5 by Clear Code - https://youtu.be/
 Changes made:
 - Added decimal point button
 - Disabled user from typing in field
-- added keyPressEvent function so keyboard can be used
+- Added keyPressEvent function so keyboard can be used
+- Delete key clears the field
 
 Improvements to make:
 - crashes if you press enter when the field is empty or an operator is at the end
