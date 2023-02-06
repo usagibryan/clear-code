@@ -171,5 +171,5 @@ class MainWindow(qtw.QWidget):
 
 app = qtw.QApplication([])
 mw = MainWindow()
-app.setStyle(qtw.QStyleFactory.create('Fusion'))
+app.setStyle(qtw.QStyleFactory.create('Windows'))
 app.exec_() # The underscore prevents naming conflicts with python

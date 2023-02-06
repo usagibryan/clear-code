@@ -10,8 +10,9 @@ Changes made:
 - changed font and text set
 - created fixed size to prevent re-sizing
 - added error handling so that it doesn't crashe if you press enter when the field is empty or an operator is at the end
+- changed style to 'Windows'
 
 Improvements to make:
-- 
 - add history
 - add more features such as exponents, square roots, change sign buttons, etc.
+- Fix backspace problem
