@@ -1,14 +1,20 @@
 import PyQt5.QtWidgets as qtw
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
 
 # Attach widgets to window here
 class MainWindow(qtw.QWidget):
 	def __init__(self):
 		super().__init__()
-		self.setWindowTitle("Usagi's Calculator")
-		# self.screen_width = 300
-		# self.screen_height = 350
-		# self.setFixedSize(creen_width,screen_height)
+		self.setWindowTitle('My Calculator')
+		screen_width = 320
+		screen_height = 320
+		self.setFixedSize(screen_width,screen_height) # find a more elegant solution
+
+		self.btn_font = QFont("Arial", 12)
+		self.result_font = QFont("Arial", 16)
+
 		self.setLayout(qtw.QVBoxLayout())
 		self.keypad()
 		self.temp_nums = []
@@ -23,6 +29,7 @@ class MainWindow(qtw.QWidget):
 		# Buttons
 		self.result_field = qtw.QLineEdit()
 		self.result_field.setReadOnly(True) # prevents the user from typing in the text field
+		self.result_field.setFont(self.result_font)
 
 		btn_result = qtw.QPushButton('=', clicked = self.func_result)
 		btn_clear = qtw.QPushButton('Clear', clicked = self.clear_calc)
@@ -41,6 +48,25 @@ class MainWindow(qtw.QWidget):
 		btn_mins = qtw.QPushButton('-', clicked = lambda:self.func_press('-'))
 		btn_mult = qtw.QPushButton('x', clicked = lambda:self.func_press('*'))
 		btn_divd = qtw.QPushButton('÷', clicked = lambda:self.func_press('/'))
+
+		# Setting the Button Font
+		btn_result.setFont(self.btn_font)
+		btn_clear.setFont(self.btn_font)
+		btn_9.setFont(self.btn_font)
+		btn_8.setFont(self.btn_font)
+		btn_7.setFont(self.btn_font)
+		btn_6.setFont(self.btn_font)
+		btn_5.setFont(self.btn_font)
+		btn_4.setFont(self.btn_font)
+		btn_3.setFont(self.btn_font)
+		btn_2.setFont(self.btn_font)
+		btn_1.setFont(self.btn_font)
+		btn_0.setFont(self.btn_font)
+		btn_period.setFont(self.btn_font)
+		btn_plus.setFont(self.btn_font)
+		btn_mins.setFont(self.btn_font)
+		btn_mult.setFont(self.btn_font)
+		btn_divd.setFont(self.btn_font)
 
 		# Adding the buttons to the layout
 		container.layout().addWidget(self.result_field,0,0,1,4)
@@ -66,8 +92,9 @@ class MainWindow(qtw.QWidget):
 	def keyPressEvent(self, event):
 		if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
 			self.func_result()
-		# if event.key() == Qt.Key_Backspace:
-		# 	self.result_field.backspace()
+		# if event.key() == Qt.Key_Backspace: # doesn't work properly, deleted text comes back
+		# 	text = self.result_field.text()
+		# 	self.result_field.setText(text[:-1])
 		if event.key() == Qt.Key_Delete:
 			self.clear_calc()
 		if event.key() == Qt.Key_9:
@@ -117,11 +144,25 @@ class MainWindow(qtw.QWidget):
 		self.result_field.setText(''.join(self.fin_nums))
 
 	def func_result(self):
-		fin_string = ''.join(self.fin_nums) + ''.join(self.temp_nums)
-		result_string = eval(fin_string)
-		fin_string += ' = '
-		fin_string += str(result_string)
-		self.result_field.setText(fin_string)
+		# Check to make sure the expression ends with a number first
+		expression = self.result_field.text()
+		if expression:
+			last_char = expression[-1]
+			if last_char in ['+', '-', '*', '/']:
+				# show error message to the user
+				QMessageBox.warning(self, "Error", "Expression cannot end with an operator.")
+				return
+			try:
+				result = eval(expression)
+				self.result_field.setText(str(result))
+			except:
+				QMessageBox.warning(self, "Error", "Invalid expression.")
+			else: # This part evaluates the expression when it's safe to do so.
+				fin_string = ''.join(self.fin_nums) + ''.join(self.temp_nums)
+				result_string = eval(fin_string)
+				fin_string += ' = '
+				fin_string += str(result_string)
+				self.result_field.setText(fin_string)
 
 	def clear_calc(self):
 		self.result_field.clear()
