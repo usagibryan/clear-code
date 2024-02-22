@@ -6,8 +6,6 @@ class Player(pygame.sprite.Sprite):
 		super().__init__(groups)
 		# self.image = pygame.image.load('graphics/test/player.png').convert_alpha()
 		self.image = pygame.image.load('./zelda/graphics/test/player.png').convert_alpha()
-		#file path either has to be './zelda/graphics/test/player.png' or just graphics/test/player.png'
-		self.image = pygame.image.load('./zelda/graphics/test/player.png').convert_alpha()
 		self.rect = self.image.get_rect(topleft = pos)
 
 		self.direction = pygame.math.Vector2()
