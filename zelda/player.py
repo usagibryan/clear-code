@@ -29,6 +29,13 @@ class Player(pygame.sprite.Sprite):
 			self.direction.x = 0
 
 	def move(self,speed):
+		# Speed must be normalized or else player moves too fast diagonally.
+		# This is due to trigonometry. This gets the length of the vector, checks if it
+		# has length and then sets it to 1 (a vector of 0 can't be normalized)
+		# See: https://youtu.be/QU1pPzEGrqw?si=vALR5kxqrVU2lVH3&t=2225
+		if self.direction.magnitude() != 0:
+			self.direction = self.direction.normalize()
+
 		self.rect.center += self.direction * speed
 
 	def update(self):
