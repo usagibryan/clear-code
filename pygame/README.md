@@ -1,0 +1,1 @@
+This repository is for all the pygame tutorials I have followed along with from Clear Code's YouTube channel.
